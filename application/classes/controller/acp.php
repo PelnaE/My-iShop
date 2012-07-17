@@ -4,10 +4,11 @@ class Controller_ACP extends Controller_Template
 {
     public function action_index()
     {
-        $view                    = View::factory('acp/main');
-        $view->session           = Session::instance()->get('admin');
-        $view->cookie            = Cookie::get('admin');
-        $this->template->content = $view->render();
+        if (Auth::is_admin_signed_in() == false) {
+            $this->template->content = View::factory('acp/login');
+        } else {
+            $this->template->content = View::factory('acp/home');
+        }
     }
 
     public function action_sign_up()
@@ -18,7 +19,7 @@ class Controller_ACP extends Controller_Template
         if (empty($nick) and empty($pass)) {
             $this->request->redirect('acp');
         }
-        if (!($cookie)) {
+        if ($cookie) {
             Cookie::set('admin', $nick);
         }
         Session::instance()->set('admin', $nick);

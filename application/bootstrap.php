@@ -61,6 +61,7 @@ I18n::lang('lv');
 if (isset($_SERVER['KOHANA_ENV'])) {
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
+
 Cookie::$salt = 'My_iShop';
 Cookie::$expiration = 6400;
 /**
