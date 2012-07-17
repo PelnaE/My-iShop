@@ -11,6 +11,7 @@ class Controller_Profile extends Controller_Template
         $view->valute            = $clients->get_user_valute($user_email);
         $view->data              = $get_user_data;
         $this->template->content = $view->render();
+        
         if ($this->request->method() === Request::POST) {
             $valute = $this->request->post('valute');
             $name   = $this->request->post('name');

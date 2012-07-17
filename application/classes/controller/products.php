@@ -35,35 +35,36 @@ class Controller_Products extends Controller_Template
     public function action_item() 
     {
         $product_id = $this->request->param('id');
+
         if (empty($product_id)) {
             throw new Exception("Product ID must not be empty!");
         }
-            $view = View::factory('products/info');
-            $products = new Model_Product();
-            $clients = new Model_Client();
-            $view->products = $products->get_product_by_id($product_id);
-            $user_email = Session::instance()->get('email');
-            $view->valute = $clients->get_user_valute($user_email);
-            $this->template->content = $view->render();
+
+        $view                    = View::factory('products/info');
+        $products                = new Model_Product();
+        $clients                 = new Model_Client();
+        $view->products          = $products->get_product_by_id($product_id);
+        $user_email              = Session::instance()->get('email');
+        $view->valute            = $clients->get_user_valute($user_email);
+        $this->template->content = $view->render();
     }
+
     public function action_add_to_cart() {
         $product_count = $this->request->param('id');
-        $product_id = $this->request->param('id2');
+        $product_id    = $this->request->param('id2');
 
-        if(!Security::check($this->request->param('id3'))) 
-        {
+        if (!Security::check($this->request->param('id3'))) {
             $this->request->redirect('products');
         }
 
-        if(empty($product_id))
-        {
+        if (empty($product_id)) {
             $this->request->redirect('cart');
         }
-        $cart = new Model_Cart();
+
+        $cart    = new Model_Cart();
         $session = Session::instance()->get('email');
 
-        if(empty($session))
-        {
+        if (empty($session)) {
             $this->request->redirect('products');
         }
 
