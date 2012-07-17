@@ -18,8 +18,8 @@ class Controller_Register extends Controller_Template
             $salt              = 'MySalt!';
             $name              = $this->request->post('name');
             $email             = $this->request->post('email');
-            $pass              = crypt($salt,$this->request->post('pass'));
-            $pass_confirm      = crypt($salt,$this->request->post('pass_confirm'));
+            $pass              = $this->request->post('pass');
+            $pass_confirm      = $this->request->post('pass_confirm');
             $checkbox          = $this->request->post('checkbox');
             $clients           = new Model_Client();
             $valide_email      = $clients->if_email_exists($email);
@@ -36,6 +36,8 @@ class Controller_Register extends Controller_Template
             if ($pass != $pass_confirm) {
                 throw new Exception("Passwords do not match!");
             }
+
+            $pass = crypt($salt,$this->request->post('pass'));
 
             if (empty($name) && empty($email) && empty($pass)) {
                 throw new Exception("Please, do not make empty fields!");               
