@@ -17,14 +17,8 @@
 		<img align="center" src="<?=$product->image_url?>" alt="<?=$product->name?>" /><br />
 	<?php endif; ?>
 		<span class="title"><?=$product->name?></span><br />
-				<span class="price">
-			<?php if($valute == 'LVL' or $valute == NULL): ?>
-				<?=Num::format($product->price/100,2)?> Ls
-			<?php elseif($valute == 'EUR'): ?>
-				€ <?=Num::format(($product->price/100)/0.70,2)?>
-			<?php elseif($valute == 'USD'): ?>
-				$<?=Num::format(($product->price/100)/0.55,2)?>
-			<?php endif; ?>
+		<span class="price">
+			<?=Currency::pretty_format($product->price, $valute)?>
 		</span>
 	</a>
 	</section>

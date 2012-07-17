@@ -24,13 +24,7 @@ class Controller_ACP_Products extends Controller_Template
             $price       = $this->request->post('price');
             $img_url     = $this->request->post('img_url');
 
-            if ($valute == 'LVL') {
-                $price = $price*100;
-            } elseif ($valute == 'EUR') {
-                $price = ($price*0.70)*100;
-            } elseif($valute == 'USD') {
-                $price = ($price*0.55)*100;
-            }
+            $price = Currency::to_database($price, $valute);
 
             if (empty($name) && empty($category) && empty($description) && empty($price)) {
                 throw new Exception("Please do not make empty fields!");

@@ -25,25 +25,13 @@
 	<?php if($product->count > 1):
 		$product->price = $product->price/100 * $product->count;?>
 		<td>
-			<?if($valute == 'LVL'):?>
-				<?=Num::format($product->price,2)?><?=$valute?>
-			<?elseif($valute == 'EUR'):?>
-				€ <?=Num::format($product->price/0.70,2)?>
-			<?elseif ($valute == 'USD'):?>
-				$<?=Num::format($product->price/0.55,2)?>
-			<?endif; ?>
+			<?=Currency::pretty_format($product->price, $valute)?>
 		</td>
 
 		<?php else: ?>
 
 		<td>
-			<?php if($valute == 'LVL'): ?>
-				<?=Num::format($product->price/100,2)?><?=$valute?>
-			<?php elseif($valute == 'EUR'): ?>
-				€ <?=Num::format(($product->price/100)/0.70,2)?>
-			<?php elseif ($valute == 'USD'): ?>
-				$<?=Num::format(($product->price/100)/0.55,2)?>
-			<?php endif; ?>
+			<?=Currency::pretty_format($product->price, $valute)?>
 		</td>
 
 	<?php endif; ?>

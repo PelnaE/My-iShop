@@ -9,13 +9,7 @@
 	<?php endif; ?>
 		<span class="title"><?=$product->name?></span><br />
 		<span class="price">
-			<?php if($valute == 'LVL' or $valute == NULL): ?>
-				<?=Num::format($product->price/100,2)?> Ls
-			<?php elseif($valute == 'EUR'): ?>
-				€ <?=Num::format(($product->price/100)/0.70,2)?>
-			<?php elseif ($valute == 'USD'): ?>
-				$<?=Num::format(($product->price/100)/0.55,2)?>
-			<?php endif; ?>
+			<?=Currency::pretty_format($product->price, $valute)?>
 		</span>
 	</a>
 	</section>
@@ -32,20 +26,12 @@
 	<?php endif; ?>
 		<span class="title"><?=$discount->name?></span><br />
 		<span class="price">
-			<span style="color:red"><?php if($valute == 'LVL' or $valute == NULL): ?>
-			<?=Num::format(($discount->price/100)-($discount->price/100)*($discount->discount/100),2)?>  
-			<?php elseif($valute == 'EUR'): ?>
-			€ <?=Num::format((($discount->price/100)-($discount->price/100)*($discount->discount/100))/0.70,2)?>
-			<?php elseif ($valute == 'USD'): ?>
-			$<?=Num::format((($discount->price/100)-($discount->price/100)*($discount->discount/100))/0.55,2)?>
-			<?php endif; ?></span>
-			<del><?php if($valute == 'LVL' or $valute == NULL): ?>
-				<?=Num::format($discount->price/100,2)?> Ls
-			<?php elseif($valute == 'EUR'): ?>
-				€ <?=Num::format(($discount->price/100)/0.70,2)?>
-			<?php elseif ($valute == 'USD'): ?>
-				$<?=Num::format(($discount->price/100)/0.55,2)?>
-			<?php endif; ?></del><br />
+			<span style="color:red">
+				<?=Currency::pretty_format($discount->price, $valute, $discount->discount)?>
+			</span>
+			<del>
+				<?=Currency::pretty_format($discount->price, $valute)?>
+			</del><br />
 			<span style="font-size:16px;color:red"><?=$discount->discount?>% atlaide!</span>
 		</span>
 	</a>

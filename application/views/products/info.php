@@ -20,31 +20,13 @@
 	<tr>
 		<th>Cena</th>
 		<td>
-			<?php if($product->is_discount == 1):?>
-
-							<span style="color:red"><?php if($valute == 'LVL' or $valute == NULL): ?>
-			<?=Num::format(($product->price/100)-($product->price/100)*($product->discount/100),2)?>  
-			<?php elseif($valute == 'EUR'): ?>
-			€ <?=Num::format((($product->price/100)-($product->price/100)*($product->discount/100))/0.70,2)?>
-			<?php elseif ($valute == 'USD'): ?>
-			$<?=Num::format((($product->price/100)-($product->price/100)*($product->discount/100))/0.55,2)?>
-			<?php endif; ?></span>
-			<del><?php if($valute == 'LVL' or $valute == NULL): ?>
-				<?=Num::format($product->price/100,2)?> Ls
-			<?php elseif($valute == 'EUR'): ?>
-				€ <?=Num::format(($product->price/100)/0.70,2)?>
-			<?php elseif ($valute == 'USD'): ?>
-				$<?=Num::format(($product->price/100)/0.55,2)?>
-			<?php endif; ?></del><br />
+			<?php if ($product->is_discount == 1) :?>
+			<span style="color:red"><?=Currency::pretty_format($product->price, $valute, $product->discount)?></span>
+			<del><?=Currency::pretty_format($product->price, $valute)?></del>
+			<br />
 			<span style="font-size:16px;color:red"><?=$product->discount?>% atlaide!</span>
 			<?php else: ?>
-							<?php if($valute == 'LVL' or $valute == NULL): ?>
-					<?=Num::format($product->price/100,2)?> Ls
-				<?php elseif($valute == 'EUR'): ?>
-					€ <?=Num::format(($product->price/100)/0.70,2)?>
-				<?php elseif ($valute == 'USD'): ?>
-					$<?=Num::format(($product->price/100)/0.55,2)?>
-				<?php endif; ?>
+				<?=Currency::pretty_format($product->price, $valute)?>
 			<?php endif; ?>
 		</td>
 	</tr>

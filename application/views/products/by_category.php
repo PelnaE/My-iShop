@@ -1,5 +1,7 @@
 <h2><?=$category?></h2>
-<?php if(!empty($products)): ?>
+<?php if (empty($products)) : ?>
+	<h2>Šobrīd mums nav atbilstošās kategorijas preces!</h2>
+<?php endif; ?>
 <?php foreach($products as $product): ?>
 <section class="last-product">
 		<a href="<?=URL::site('products/item/'.$product->id)?>">
@@ -10,17 +12,8 @@
 	<?php endif; ?>
 		<span class="title"><?=$product->name?></span><br />
 				<span class="price">
-			<?php if($valute == 'LVL' or $valute == NULL): ?>
-				<?=Num::format($product->price/100,2)?> Ls
-			<?php elseif($valute == 'EUR'): ?>
-				 <?=Num::format(($product->price/100)/0.70,2)?>
-			<?php elseif($valute == 'USD'): ?>
-				$<?=Num::format(($product->price/100)/0.55,2)?>
-			<?php endif; ?>
+			<?=Currency::pretty_format($product->price, $valute)?>
 		</span>
 	</a>
 	</section>
 <?php endforeach; ?>
-<?php else: ?>
-	<h2>Error 404!</h2>
-<?php endif; ?>
