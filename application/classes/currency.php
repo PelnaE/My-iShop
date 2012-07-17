@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Adjust product's price to user's valute.
+ * Calculates price of product.
  *
  * @author reGative regative@gmail.com
  */
