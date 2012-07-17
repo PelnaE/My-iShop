@@ -7,7 +7,7 @@
 	<?php else: ?>
 		<img align="center" src="<?=$product->image_url?>" alt="<?=$product->name?>" /><br />
 	<?php endif; ?>
-		<span class="title"><?=$product->name?></span><br />
+		<span class="title"><?=strip_tags($product->name)?></span><br />
 		<span class="price">
 			<?=Currency::pretty_format($product->price, $valute)?>
 		</span>

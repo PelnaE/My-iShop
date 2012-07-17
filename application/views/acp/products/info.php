@@ -7,7 +7,7 @@
 		</tr>
 		<tr>
 			<th>Cena (Bez atlaides)</th>
-			<td><input type="text" name="price" value="<?=Currency::pretty_format($product->price)?>" /></td>
+			<td><input type="text" name="price" value="<?=Num::format($product->price/100,2)?>" /></td>
 		</tr>
 <?php if($product->is_discount == 1): ?>
 		<tr>

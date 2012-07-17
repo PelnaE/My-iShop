@@ -37,7 +37,7 @@ class Controller_Products extends Controller_Template
         $product_id = $this->request->param('id');
 
         if (empty($product_id)) {
-            throw new Exception("Product ID must not be empty!");
+            Error::number_404();
         }
 
         $view                    = View::factory('products/info');

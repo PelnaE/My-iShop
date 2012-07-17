@@ -73,7 +73,7 @@ class Controller_ACP_Products extends Controller_Template
 
         if($this->request->method() === Request::POST){
 
-            $name        = $this->request->post('name');
+            $name        = strip_tags($this->request->post('name'));
             $is_discount = $this->request->post('is_discount');
             $discount    = $this->request->post('discount');
             $description = $this->request->post('description');

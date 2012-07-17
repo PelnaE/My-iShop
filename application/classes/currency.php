@@ -7,7 +7,7 @@
  */
 class Currency
 {
-    static function pretty_format($price, $valute, $discount = NULL)
+    static function pretty_format($price, $valute = NULL, $discount = NULL)
     {
         if ($valute === 'LVL' or $valute === NULL) {
             if ($discount !== NULL) {
