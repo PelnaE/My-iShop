@@ -7,12 +7,12 @@
 		</tr>
 		<tr>
 			<th>Cena (Bez atlaides)</th>
-			<td><input type="text" name="price" value="<?=Num::format($product->price/100,2)?>" /></td>
+			<td><input type="text" name="price" value="<?=Currency::pretty_format($product->price)?>" /></td>
 		</tr>
 <?php if($product->is_discount == 1): ?>
 		<tr>
 			<th>Cena (Ar atlaidi)</th>
-			<td><?=Num::format(($product->price/100)-($product->price/100)*($product->discount/100),2)?></td>
+			<td><?=Currency::pretty_format($product->price, $product->discount)?></td>
 		</tr>
 		<tr>
 			<th>Atlaide <input checked="checked" type="checkbox" name="is_discount" /></th>
