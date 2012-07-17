@@ -1,3 +1,5 @@
-#Pie Mums Internet shop
-
-There is code of my first internet shop. :)
+#reGative`s iShop (on Kohana)  
+  
+My first iShop on Kohana Framework.  
+  
+Follow me on Twitter and read my blog on reGative.Posterous.com!
