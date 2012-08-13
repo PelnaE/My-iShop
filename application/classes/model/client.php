@@ -6,28 +6,25 @@
 
 class Model_Client extends Model
 {
-
     /**
-     * Creates new client.
-     * 
-     * @param string $name  Client name.
-     * @param string $email Client email.
-     * @param string $pass  Client pass.
+     * Creates new user.
      *
-     * @return integer       Number of affected rows.
+     * @param  array  $data Information about new user.
+     *
+     * @return void
      */
-    public function create_user($name, $email, $pass)
+    public function create_user(array $data)
     {
-        DB::insert('clients', array('email', 'pass', 'name'))
-        ->values(array($email,$pass,$name))
+        return DB::insert('clients', array_keys($data))
+        ->values(array_values($data))
         ->execute();
     }
 
     /**
      * Get data of user with that email.
-     * 
+     *
      * @param string $email Client's email.
-     * 
+     *
      * @return array         Client data.
      */
     public function get_user_data($email)
@@ -41,9 +38,9 @@ class Model_Client extends Model
 
     /**
      * Gets valute of client by that email.
-     * 
+     *
      * @param string $email Client's email.
-     * 
+     *
      * @return  string        Client's valute.
      */
     public function get_user_valute($email)
@@ -56,30 +53,29 @@ class Model_Client extends Model
     }
 
     /**
-     * Updates data of client by that email.
-     * 
-     * @param string $name   Client's name.
-     * @param string $valute Client's valute.
-     * @param string $email  Client's email.
-     * 
-     * @return integer        Number of affected rows.
+     * Changes user's data.
+     *
+     * @param  array  $data  Information about user.
+     * @param  string $email User's email.
+     *
+     * @return void
      */
-    public function change_user_data($name, $valute, $email)
+    public function change_user_data(array $data, $email)
     {
-        DB::update('clients')
-        ->set(array('valute' => $valute,'name' => $name))
+        return DB::update('clients')
+        ->set($data)
         ->where('email', '=', $email)
         ->execute();
     }
 
     /**
      * Checks if client of that email exists.
-     * 
+     *
      * @param string $email Client's email.
-     * 
+     *
      * @return string        Client's email, if exists (of course).
      */
-    public function if_email_exists($email)
+    static public function if_email_exists($email)
     {
         return DB::select()
         ->from('clients')
@@ -90,9 +86,9 @@ class Model_Client extends Model
 
     /**
      * Checks if client of that name exists.
-     * 
+     *
      * @param string $name Client's name.
-     * 
+     *
      * @return string       Client's name.
      */
     public function if_name_exists($name)
@@ -106,9 +102,9 @@ class Model_Client extends Model
 
     /**
      * Checks if password is not wrong.
-     * 
+     *
      * @param string $pass Client's password.
-     * 
+     *
      * @return string       Client's password.
      */
     public function if_pass_is_not_wrong($pass)

@@ -2,7 +2,7 @@
 
 class Controller_Register extends Controller_Template
 {
-    
+
     public function action_index()
     {
 
@@ -11,45 +11,45 @@ class Controller_Register extends Controller_Template
         if ($this->request->method() === Request::POST) {
 
             if (!Security::check($this->request->post('token'))) {
-
                 throw new Exception("Bad Token");
-
-            }
-            $salt              = 'MySalt!';
-            $name              = $this->request->post('name');
-            $email             = $this->request->post('email');
-            $pass              = $this->request->post('pass');
-            $pass_confirm      = $this->request->post('pass_confirm');
-            $checkbox          = $this->request->post('checkbox');
-            $clients           = new Model_Client();
-            $valide_email      = $clients->if_email_exists($email);
-            $valide_name       = $clients->if_name_exists($name);
-
-            if (!$checkbox) {
-                throw new Exception("Checkbox is empty!");              
             }
 
-            if ($valide_email == $email or $valide_name == $name) {
-                throw new Exception("User with this name/email exists!");               
+            $post = Validation::factory($_POST)
+            ->rule('name', 'not_empty')
+            ->rule('surname','not_empty')
+            ->rule('email', 'not_empty')
+            ->rule('email', 'email')
+            ->rule('email', 'Model_Client::if_email_exists')
+            ->rule('pass', 'not_empty')
+            ->rule('pass_confirm', 'not_empty')
+            ->rule('pass', 'matches', array(':validation', 'pass_confirm', 'pass'))
+            ->rule('checkbox', 'not_empty');
+
+            if ($post->check()) {
+                $salt     = 'MySalt!';
+                $name     = $this->request->post('name');
+                $surname  = $this->request->post('surname');
+                $email    = $this->request->post('email');
+                $pass     = crypt($salt, $this->request->post('pass'));
+                $checkbox = $this->request->post('checkbox');
+                $clients  = new Model_Client();
+
+                $data     = array(
+                    'name' => $name,
+                    'surname' => $surname,
+                    'email'   => $email,
+                    'pass'    => $pass,
+                    );
+
+                $create_user = $clients->create_user($data);
+
+                if (!$create_user) {
+                    throw new Exception("Please check all fields!");
+                }
+
+                $this->request->redirect('/');
+
             }
-
-            if ($pass != $pass_confirm) {
-                throw new Exception("Passwords do not match!");
-            }
-
-            $pass = crypt($salt,$this->request->post('pass'));
-
-            if (empty($name) && empty($email) && empty($pass)) {
-                throw new Exception("Please, do not make empty fields!");               
-            }
-
-            $create_user = $model_for_clients->create_user($name,$email,$pass);
-
-            if (!$create_user) {
-                throw new Exception("Please check all fields!");                
-            }
-            
-            $this->request->redirect('/');
 
         }
 

@@ -30,7 +30,14 @@ class Controller_ACP_Products extends Controller_Template
                 throw new Exception("Please do not make empty fields!");
             }
             $products           = new Model_Product();
-            $create_new_product = $products->create_new_product($img_url,$name,$category,$description,$price);
+            $data               = array(
+                'image_url'   => $img_url,
+                'name'        => $name,
+                'category'    => $category,
+                'description' => $description,
+                'price'       => $price,
+                );
+            $create_new_product = $products->create_new_product($data);
             if (!$create_new_product) {
                 throw new Exception("Error! Please check for DB settings!");
             }
@@ -98,14 +105,15 @@ class Controller_ACP_Products extends Controller_Template
             }
 
             $products = new Model_Product();
-            $update_product_info = $products
-                                    ->update_product_info($is_discount,
-                                                        $discount,
-                                                        $name,
-                                                        $description,
-                                                        $price,
-                                                        $img_url,
-                                                        $id);
+            $data     = array(
+                'is_discount' => $is_discount,
+                'discount'    => $discount,
+                'name'        => $name,
+                'description' => $description,
+                'price'       => $price,
+                'image_url'   => $img_url,
+                );
+            $update_product_info = $products->update_product_info($data, $id);
             if (!$update_product_info) {
                 throw new Exception("Error with database");
             }

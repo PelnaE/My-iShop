@@ -19,21 +19,16 @@ class Model_Product extends Model
     }
 
     /**
-     * Inserts new product into database.
+     * Creates new product for iShop.
      * 
-     * @param  string $img_url URL of product's image.
-     * @param  string $name    Product name.
-     * @param  string $cat     Product's category.
-     * @param  string $descr   Product's description,
-     * @param  integer $price   Product's price.
+     * @param  array  $data Information about product.
      * 
      * @return void
      */
-    public function create_new_product($img_url, $name, $cat, $descr, $price)
+    public function create_new_product(array $data)
     {
-        return DB::insert('products',
-            array('name', 'category', 'description', 'price', 'image_url'))
-        ->values(array($name, $cat, $descr, $price, $img_url))
+        DB::insert('products', array(array_keys($data)))
+        ->values(array_values($data))
         ->execute();
     }
 
@@ -68,27 +63,17 @@ class Model_Product extends Model
     }
 
     /**
-     * Updates product information.
+     * Updates information about product with that id.
      * 
-     * @param  integer $is_disc Value can be 0 or 1.
-     * @param  integer $disc    Value of discount.
-     * @param  string  $name    Name of the product.
-     * @param  string  $descr   Description of the product.
-     * @param  integer $price   Price of the product.
-     * @param  string  $img_url URL of product's image.
-     * @param  integer $id      ID of the product.
+     * @param  array  $data Information about product.
+     * @param  intiger $id   Product's ID.
      * 
-     * @return void
+     * @return void.
      */
-    public function update_product_info($is_disc, $disc, $name, $descr, $price, $img_url, $id)
+    public function update_product_info(array $data, $id)
     {
         return DB::update('products')
-        ->set(array('name' => $name,
-            'discount' => $disc,
-            'is_discount' => $is_disc,
-            'description' => $descr,
-            'price' => $price,
-            'image_url' => $img_url))
+        ->set($data)
         ->where('id', '=', $id)
         ->execute();
     }

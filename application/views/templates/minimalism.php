@@ -4,7 +4,7 @@
 		<title><?=$name?></title>
 		<?php if(!empty($stylesheets)): ?>
 			<?php foreach($stylesheets as $stylesheet): ?>
-				<link rel="stylesheet" 
+				<link rel="stylesheet"
 						href="<?=URL::site('assets/css/'.$stylesheet.'.css')?>" />
 			<?php endforeach; ?>
 		<?php endif; ?>
@@ -45,7 +45,7 @@
 				<a href="<?=URL::site('acp/sign_out')?>">Iziet</a>
 			</div>
 		</div>
-		<?php elseif(!empty($admin_cookie)): 
+		<?php elseif(!empty($admin_cookie)):
 		Session::instance()->set('admin', $admin_cookie);
 		Request::current()->redirect('.'); endif;?>
 		<div id="wrapper">
@@ -57,6 +57,8 @@
 
 				<?php if(!empty($content)): ?>
 					<?=$content?>
+				<?php else: ?>
+				Error!
 				<?php endif; ?>
 
 			</div>

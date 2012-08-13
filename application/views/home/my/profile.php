@@ -3,8 +3,12 @@
 	<table>
 		<?php foreach($data as $my): ?>
 		<tr>
-			<td ><strong>Vārds, uzvārds</strong></td>
+			<td ><strong>Vārds</strong></td>
 			<td width="60%"><input type="text" name="name" value="<?=$my['name']?>" /></td>
+		</tr>
+		<tr>
+			<td>Uzvārds</td>
+			<td><input type="text" name="surname" value="<?=$my['surname']?>"/ ></td>
 		</tr>
 		<tr>
 			<td><strong>Valūta</strong></td>
