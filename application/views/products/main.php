@@ -1,27 +1,19 @@
-<h2>Meklēt preces pēc kategorijām</h2>
-<?php foreach ($categories as $category): ?>
-	<ul>
-	 	<li><a href="<?=URL::site('products/category/'."$category->slug")?>"><?=$category->name?></a></li>
-	 </ul> 
-<?php endforeach; ?>
-
 <?php if(count($products) > 0): ?>
-<h2>Visas veikalā pieejamās preces</h2>
+<h1>Visas veikalā pieejamās preces</h1>
 	<?php foreach($products as $product): ?>
-	
-	<section class="last-product">
-		<a href="<?=URL::site('products/item/'.$product->id)?>">
+	<div class="calendar">
+		<p class="month">Cena</p>
+		<p class="date"><?=Currency::pretty_format($product->price, $valute)?></p>
+	</div>
+	<div class="post">
+		<h1><a href="<?=URL::site('products/item/'.$product->id)?>"><?=$product->name?></a></h1>
 	<?php if(empty($product->image_url)): ?>
-		<img align="center" src="<?=URL::site('assets/pic/no_image_available.jpg')?>" alt="No Picture Available" /><br />
+		<img align="left" src="<?=URL::site('assets/pic/no_image_available.jpg')?>" alt="No Picture Available" /><br />
 	<?php else: ?>
-		<img align="center" src="<?=$product->image_url?>" alt="<?=$product->name?>" /><br />
+		<img align="left" src="<?=$product->image_url?>" alt="<?=$product->name?>" /><br />
 	<?php endif; ?>
-		<span class="title"><?=$product->name?></span><br />
-		<span class="price">
-			<?=Currency::pretty_format($product->price, $valute)?>
-		</span>
-	</a>
-	</section>
+		<?=Darkmown::parse($product->description)?>
+	</div>
 
 	<?php endforeach; ?>
 

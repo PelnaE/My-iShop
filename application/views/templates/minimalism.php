@@ -1,72 +1,132 @@
-<! DOCTYPE html>
-<html>
-	<head>
-		<title><?=$name?></title>
-		<?php if(!empty($stylesheets)): ?>
-			<?php foreach($stylesheets as $stylesheet): ?>
-				<link rel="stylesheet"
-						href="<?=URL::site('assets/css/'.$stylesheet.'.css')?>" />
-			<?php endforeach; ?>
-		<?php endif; ?>
-		<meta charset="UTF-8" />
-		<script src="<?=URL::site('assets/scripts/jquery.js')?>"></script>
-		<script type="text/javascript" src="<?=URL::site('assets/scripts/raphael.js')?>"></script>
-	</head>
-	<body>
-		<div class="menu">
-			<div class="menu-center">
-				<a href="<?=URL::site('.')?>" id="home" title="Sākums">Sākums</a>
-				<a href="<?=URL::site('products')?>" title="Preču klāsts">Preces</a>
-		<?php $user_cookie = Cookie::get('email');
-		$user_session = Session::instance()->get('email');
-		if(!empty($user_session)): ?>
-				<a href="<?=URL::site('cart')?>" title="Grozs">Grozs</a>
-				<a href="<?=URL::site('profile')?>" title="Mans Profils">Profils</a>
-				<a href="<?=URL::site('logout')?>">Iziet</a>
-		<?php elseif(!empty($user_cookie)):
-		Session::instance()->set('email', $user_cookie);
-		Request::current()->redirect('.');
-		else: ?>
-				<a href="<?=URL::site('login')?>">Ienākt</a>
-				<a href="<?=URL::site('register')?>">Reģistrācija</a>
-		<?php endif; ?>
-			</div>
-		</div>
-		<?php $admin_session = Session::instance()->get('admin');
-		$admin_cookie = Cookie::get('admin');
-		if(!empty($admin_session)): ?>
-		<div class="admin-menu">
-			<div class="admin-menu-center">
-				<a href="<?=URL::site('acp')?>">Sākums</a>
-				<a href="<?=URL::site('acp/products')?>">Preču klāsts</a>
-				<a href="<?=URL::site('acp/products/create')?>">Pievienot preci</a>
-				<a href="<?=URL::site('acp/categories')?>">Kategorijas</a>
-				<a href="<?=URL::site('acp/categories/create')?>">Pievienot kategoriju</a>
-				<a href="<?=URL::site('acp/sign_out')?>">Iziet</a>
-			</div>
-		</div>
-		<?php elseif(!empty($admin_cookie)):
-		Session::instance()->set('admin', $admin_cookie);
-		Request::current()->redirect('.'); endif;?>
-		<div id="wrapper">
-			<div class="header">
-				<h1 class="title"><?=$name?></h1>
-				<p class="title">Pie mums vienmēr izdevīgāk!</p>
-			</div>
-			<div class="content">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head profile="http://gmpg.org/xfn/11">
 
-				<?php if(!empty($content)): ?>
-					<?=$content?>
-				<?php else: ?>
-				Error!
-				<?php endif; ?>
+<!--
+ ____________________________________________________________
+|                                                            |
+|    DESIGN : Jeeremie { http://web-kreation.com }           |
+|      DATE : 2008-01-23                                     |
+|     EMAIL : webmaster@web-kreation.com                     |
+|   VERSION : 2.1                                            |
+|  DOWNLOAD : http://web-kreation.com/index.php/freebies     |
+|____________________________________________________________|
+-->
 
+	<title><?=$name?></title>
+	<?php foreach($stylesheets as $stylesheet): ?>
+	<link rel="stylesheet" type="text/css" media="screen" href="<?=URL::site('assets/css/'.$stylesheet.'.css')?>"/>
+    <script src="<?=URL::site('assets/scripts/jquery.js')?>"></script>
+<?php endforeach; ?>
+</head>
+<body>
+    <div id="container">
+        <div id="wrapper">
+
+			<div id="sidebar">
+				<ul>
+					<li id="sb_top">
+						<div class="sb_logo">
+							<h1><?=$name?></h1>
+						</div>
+					</li>
+					<li>
+						<ul class="navlist">
+							<li><a href="<?=URL::site('/')?>">Home</a></li>
+							<li><a href="<?=URL::site("/products/")?>">Products</a></li>
+
+                            <?php if (Auth::is_user_signed_in() == FALSE): ?>
+							<li><a href="<?=URL::site("/register/")?>">Registration</a></li>
+                        <?php endif; ?>
+						</ul>
+					</li>
+                    <?php if (Auth::is_user_signed_in() == FALSE): ?>
+                    <li class="widget"><h2>Ienākt</h2>
+                        <ul>
+                            <form method="post" action="<?=URL::site('login/submit')?>">
+                                <input type="text" name="email" /><br />
+                                <input type="password" name="pass" /><br />
+                                <label>
+                                    <input type="checkbox" name="cookie" />
+                                    Login with cookies
+                                </label><br />
+                                <input type="submit" value="Login" />
+                            </form>
+                        </ul>
+                    </li>
+                    <?php else: ?>
+                    <?php foreach($users as $user): ?>
+                    <li class="widget"><h2><?=$user->name?> <?=$user->surname?></h2>
+                        <ul>
+                            <li><a href="<?=URL::site('/cart/')?>">Cart</a></li>
+                            <li><a href="<?=URL::site('logout')?>">LogOut</a></li>
+                        </ul>
+                    </li>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+
+                    <li class="widget"><h2>Kategorijas</h2>
+                        <ul>
+                        <?php foreach ($categories as $category): ?>
+                                <li><a href="<?=URL::site('products/category/'."$category->slug")?>"><?=$category->name?></a></li>
+                        <?php endforeach; ?>
+                        </ul>
+                    </li>
+				</ul>
 			</div>
-		</div>
-		<?php if(!empty($scripts)): ?>
-		<?php foreach ($scripts as $script): ?>
-			<script src="<?=URL::site('assets/scripts/'.$script.'.js')?>"></script>
-		<?php endforeach;?>
-		<?php endif; ?>
-	</body>
+
+			<!-- Top -->
+<div id="top">
+    <!-- search form -->
+    <form method="get" id="searchform" action="">
+      <div>
+    	<input class="search" type="text" value="" name="s" id="s" />
+      </div>
+    </form>
+
+    <!--<a href="contact.php" name="Contact"><img src="wp-content/themes/yoghourt/images/contact.jpg"  alt="Contact" /> Contact</a>  -->
+</div>
+            <div id="content">
+            	<div id="intro">
+                    <?php foreach($products as $product): ?>
+                    <h1><a href="<?=URL::site('products/item/'.$product->id)?>"><?=$product->name?></a></h1>
+                    <?php if (empty($product->image_url)): ?>
+                        <img height="65px" src="<?=URL::site('assets/pic/no_image_available.jpg')?>" align="left" />
+                    <?php else: ?>
+                        <img height="65px" src="<?=$product->image_url?>" align="left" />
+                    <?php endif ?>
+                    Tikai <?=Currency::pretty_format($product->price, $valute, $product->discount)?>!<br />
+                    Atlaide - <?=$product->discount?>%
+                <?php endforeach; ?>
+            	</div>
+            	<?=$content?>
+
+
+
+            </div> <!-- /content -->
+            <?php if (isset($scripts)): ?>
+            <?php foreach($scripts as $script): ?>
+            <script type="text/javascript" src="<?=URL::site('assets/scripts/'. $script.'.js')?>"></script>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+            <div id="footer">
+                <div class="contentfoot">
+                    <!-- Back to top button -->
+					<div class="backtotop"><a href="#container" title="Back to top">&nbsp;</a></div>
+
+
+                    <!-- To use this template free you must keep the link below-->
+                    Template design by <a href="http://web-kreation.com">Web-Kreation</a>
+                </div> <!-- /contentfoot -->
+
+
+            </div> <!-- /footer -->
+
+        <br class="endOfSection" />
+        </div> <!-- /wrapper -->
+
+    </div> <!-- /contain -->
+
+</body>
 </html>

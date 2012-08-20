@@ -6,8 +6,8 @@ return array(
 			'connection' => array(
 				'hostname' => 'localhost',
 				'database' => 'piemums',
-				'username' => 'reGative',
-				'password' => 'kalimenta',
+				'username' => 'root',
+				'password' => 'V!%dF(ReGaTiVe)Y',
 				'persistent' => false,
 				),
 			'table_prefix' => '',

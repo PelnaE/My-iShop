@@ -7,7 +7,7 @@ class Model_Product extends Model
 
     /**
      * Gets all products from database.
-     * 
+     *
      * @return object Products.
      */
     public function get_all_products()
@@ -20,23 +20,23 @@ class Model_Product extends Model
 
     /**
      * Creates new product for iShop.
-     * 
+     *
      * @param  array  $data Information about product.
-     * 
+     *
      * @return void
      */
     public function create_new_product(array $data)
     {
-        DB::insert('products', array(array_keys($data)))
+        DB::insert('products', array_keys($data))
         ->values(array_values($data))
         ->execute();
     }
 
     /**
      * Gets product by that ID.
-     * 
+     *
      * @param int $id Product's ID.
-     * 
+     *
      * @return object Information about product by that ID.
      */
     public function get_product_by_id($id)
@@ -50,9 +50,9 @@ class Model_Product extends Model
 
     /**
      * Deletes product from DB by that ID.
-     * 
+     *
      * @param integer id Product's ID.
-     * 
+     *
      * @return integer Number of affected rows.
      */
     public function delete_product($id)
@@ -64,10 +64,10 @@ class Model_Product extends Model
 
     /**
      * Updates information about product with that id.
-     * 
+     *
      * @param  array  $data Information about product.
      * @param  intiger $id   Product's ID.
-     * 
+     *
      * @return void.
      */
     public function update_product_info(array $data, $id)
@@ -80,7 +80,7 @@ class Model_Product extends Model
 
     /**
      * Get last 5 products from database.
-     * 
+     *
      * @return Object Information about product.
      */
     public function get_newest_products()
@@ -96,9 +96,9 @@ class Model_Product extends Model
 
     /**
      * Selects products from DB with that slug of category.
-     * 
+     *
      * @param string $slug Slug of category.
-     * 
+     *
      * @return object       Information about product.
      */
     public function get_products_by_category($slug)
@@ -113,7 +113,7 @@ class Model_Product extends Model
 
     /**
      * Get products, where is_discount is equal to 1.
-     * 
+     *
      * @return object Information about product.
      */
     public function get_products_with_discounts()
@@ -122,6 +122,17 @@ class Model_Product extends Model
         ->from('products')
         ->order_by('id', 'DESC')
         ->where('is_discount', '=', 1)
+        ->as_object()
+        ->execute();
+    }
+
+    public function get_random_product_with_discount()
+    {
+        return DB::select()
+        ->from('products')
+        ->where('is_discount', '=', 1)
+        ->order_by(DB::expr('RAND()'))
+        ->limit(1)
         ->as_object()
         ->execute();
     }

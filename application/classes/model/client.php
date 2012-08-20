@@ -32,8 +32,8 @@ class Model_Client extends Model
         return DB::select()
         ->from('clients')
         ->where('email', '=', $email)
-        ->execute()
-        ->as_array();
+        ->as_object()
+        ->execute();
     }
 
     /**

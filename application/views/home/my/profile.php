@@ -4,25 +4,25 @@
 		<?php foreach($data as $my): ?>
 		<tr>
 			<td ><strong>Vārds</strong></td>
-			<td width="60%"><input type="text" name="name" value="<?=$my['name']?>" /></td>
+			<td width="60%"><input type="text" name="name" value="<?=$my->name?>" /></td>
 		</tr>
 		<tr>
 			<td>Uzvārds</td>
-			<td><input type="text" name="surname" value="<?=$my['surname']?>"/ ></td>
+			<td><input type="text" name="surname" value="<?=$my->surname?>"/ ></td>
 		</tr>
 		<tr>
 			<td><strong>Valūta</strong></td>
 			<td>
 				<select name="valute" id="" style="width:100%">
-				<?php if($my['valute'] == 'LVL'): ?>
+				<?php if($my->valute == 'LVL'): ?>
 					<option value="LVL" selected="selected">Latvijas lati - Ls</option>
 					<option value="EUR">Euro - €</option>
 					<option value="USD">Dollars - $</option>
-				<?php elseif($my['valute'] == 'EUR'): ?>
+				<?php elseif($my->valute == 'EUR'): ?>
 					<option value="LVL">Latvijas lati - Ls</option>
 					<option value="EUR" selected="selected">Euro - €</option>
 					<option value="USD">Dollars - $</option>
-				<?php elseif($my['valute'] == 'USD'): ?>
+				<?php elseif($my->valute == 'USD'): ?>
 					<option value="LVL">Latvijas lati - Ls</option>
 					<option value="EUR">Euro - €</option>
 					<option value="USD" selected="selected">Dollars - $</option>

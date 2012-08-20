@@ -8,7 +8,7 @@ $('#count').change(function() {
 
 	var token = $('.add-to-cart').data('token');
 
-	$('.add-to-cart').html('<a href="/piemums/products/add_to_cart/'+count+'/'+id+'/'+token+'">Add To Cart</a>');
+	$('.add-to-cart').html('<a href="/iShop/products/add_to_cart/'+count+'/'+id+'/'+token+'">Add To Cart</a>');
 	
 });
 
@@ -16,4 +16,4 @@ var id = $('.add-to-cart').data('item-id');
 
 var token = $('.add-to-cart').data('token');
 
-$('.add-to-cart').html('<a href="/piemums/products/add_to_cart/1/'+id+'/'+token+'">Add To Cart</a>');
+$('.add-to-cart').html('<a href="/iShop/products/add_to_cart/1/'+id+'/'+token+'">Add To Cart</a>');

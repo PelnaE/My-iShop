@@ -1,13 +1,9 @@
-<h2>Mans grozs</h2>
 <?php if(count($products) == 0): ?>
 
-	<h2>Jūsu grozā vēl nav nevienas preces!</h2>
-
-	<p>Labojiet to, 
-		<a href="<?=URL::site('products')?>">
-			ieliekot tajā kādu preci un pasūtot to!
-		</a>
-	</p>
+<div class="post">
+	<h1>Jūsu grozā vēl nav nevienas preces.</h1>
+	<p class="notfound">To varat labot, iegādājoties kādu preci!</p>
+</div>
 
 <?php else:?>
 
@@ -22,21 +18,20 @@
 	<tr>
 		<td><?=$product->name?></td>
 		<td><?=$product->count?></td>
-	<?php if($product->count > 1):
-		$product->price = $product->price/100 * $product->count;?>
+	<?php if($product->count > 1): ?>
 		<td>
-			<?=Currency::pretty_format($product->price, $valute)?>
+			<?php echo Currency::pretty_format($product->price * $product->count, $valute); ?>
 		</td>
 
 		<?php else: ?>
 
 		<td>
-			<?=Currency::pretty_format($product->price, $valute)?>
+			<?php echo Currency::pretty_format($product->price, $valute); ?>
 		</td>
 
 	<?php endif; ?>
 		<td>
-			<a href="<?=URL::site('cart/delete/'.$product->id.'/'.Security::token())?>" 
+			<a href="<?=URL::site('cart/delete/'.$product->id.'/'.Security::token())?>"
 				class="delete">
 				[X]
 			</a>
@@ -44,14 +39,14 @@
 	</tr>
 <?php endforeach; ?>
 </table>
-<?endif?>
+<?php endif; ?>
 
 
 	<script>
 
-		$("a.delete").click(function () 
-			{ 
-				return confirm('Vai tiešām izņemt produktu no groza?') 
-			}); 
+		$("a.delete").click(function ()
+			{
+				return confirm('Vai tiešām izņemt produktu no groza?');
+			});
 
 	</script>
