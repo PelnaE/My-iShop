@@ -43,7 +43,7 @@
                     <?php if (Auth::is_user_signed_in() == FALSE): ?>
                     <li class="widget"><h2>Ienākt</h2>
                         <ul>
-                            <form method="post" action="<?=URL::site('login/submit')?>">
+                            <form method="post" action="<?=URL::site('login/submit/'.Security::token())?>">
                                 <input type="text" name="email" /><br />
                                 <input type="password" name="pass" /><br />
                                 <label>
