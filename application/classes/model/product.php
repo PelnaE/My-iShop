@@ -27,7 +27,7 @@ class Model_Product extends Model
      */
     public function create_new_product(array $data)
     {
-        DB::insert('products', array_keys($data))
+        return DB::insert('products', array_keys($data))
         ->values(array_values($data))
         ->execute();
     }
