@@ -115,4 +115,30 @@ class Model_Client extends Model
         ->execute()
         ->get('pass');
     }
+
+    public function email_from_db($email)
+    {
+        return DB::select()
+        ->from('clients')
+        ->where('email', '=', $email)
+        ->execute()
+        ->get('email');
+    }
+    public function pass_from_db($email)
+    {
+        return DB::select()
+        ->from('clients')
+        ->where('email', '=', $email)
+        ->execute()
+        ->get('pass');
+    }
+
+    public function is_superuser($email)
+    {
+        return DB::select()
+        ->from('clients')
+        ->where('email', '=', $email)
+        ->execute()
+        ->get('pass');
+    }
 }

@@ -98,6 +98,7 @@ Kohana::$config->attach(new Config_File);
 Kohana::modules(array(
 	'database'   => MODPATH.'database',   // Database access
 	'darkmown'   => MODPATH.'darkmown',   // Darkmown support /by daGrevis.lv
+	'unittest'   => MODPATH.'unittest',   // Unit-Testing
 ));
 
 /**

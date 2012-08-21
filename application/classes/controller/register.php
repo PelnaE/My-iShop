@@ -35,10 +35,11 @@ class Controller_Register extends Controller_Template
                 $clients  = new Model_Client();
 
                 $data     = array(
-                    'name' => $name,
-                    'surname' => $surname,
-                    'email'   => $email,
-                    'pass'    => $pass,
+                    'name'         => $name,
+                    'surname'      => $surname,
+                    'email'        => $email,
+                    'pass'         => $pass,
+                    'is_superuser' => '0',
                     );
 
                 $create_user = $clients->create_user($data);

@@ -13,16 +13,29 @@ class Controller_ACP extends Controller_Template
 
     public function action_sign_up()
     {
-        $nick   = $this->request->post('nick');
-        $pass   = $this->request->post('pass');
+        $email  = $this->request->post('email');
+        $pass   = crypt('MySalt!', $this->request->post('pass'));
         $cookie = $this->request->post('cookie');
-        if (empty($nick) and empty($pass)) {
+        if (!Security::check($this->request->param('id'))) {
+            throw new Exception("Bad Token!");            
+        }
+        if (empty($email) and empty($pass)) {
             $this->request->redirect('acp');
         }
-        if ($cookie) {
-            Cookie::set('admin', $nick);
+        $client = new Model_Client();
+        $email_from_db = $client->email_from_db($email);
+        $pass_from_db  = $client->pass_from_db($email);
+        if ($email !== $email_from_db || $pass !== $pass_from_db) {
+            throw new Exception("This User do not exists! \n $pass $pass_from_db");            
         }
-        Session::instance()->set('admin', $nick);
+        $is_superuser = $client->is_superuser($email);
+        if ($is_superuser === 0) {
+            throw new Exception("Sorry, but you are not a superuser!");            
+        }
+        if ($cookie) {
+            Cookie::set('admin', $email);
+        }
+        Session::instance()->set('admin', $email);
         $this->request->redirect('acp');
     }
 
