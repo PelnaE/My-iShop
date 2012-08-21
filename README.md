@@ -7,7 +7,7 @@ Please, help me and find out bugs!
 
 ## Is It used for actual i-shop?
 
-No, and I don't use it, because I need time to find out all bugs.
+No, and I don't use it, because I need time to find out all bugs. I don't recomment to use it for you as well. At least, at the moment.
 
 ## ...and author?
 
