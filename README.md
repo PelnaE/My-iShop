@@ -5,12 +5,12 @@
 This is my first attemp to create solid iShop.
 Please, help me and find out bugs!
 
-## Is It will be published on the internet?
+## Is It used for actual i-shop?
 
-Obviously, No! I need a time to fix all bugs in the engine. Maybe after first Beta you will can test my work... But I am not sure about It. :D
+No, and I don't use it, because I need time to find out all bugs.
 
 ## ...and author?
 
-Author is reGative - young Web Developer, who is learning PHP5 and PHP MVC Frameworks (at this moment Kohana).
+Author is reGative - young Web Developer, who is learning PHP5 and PHP MVC Frameworks (at this moment, Kohana).
 
-Follow on the Twitter - @reGative and read my blog - reGative.Posterous.com in Latvian!
+Follow on the Twitter - [@reGative](http://twitter.com/#!/reGative 'reGative On Twitter') and read [my blog](http://regative.posterous.com 'My Blog') in Latvian!
