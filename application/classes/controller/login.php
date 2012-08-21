@@ -25,7 +25,7 @@ class Controller_Login extends Controller_Template
         $email_from_db = $clients->if_email_exists($email);
         $pass_from_db  = $clients->if_pass_is_not_wrong($pass);
         if ($pass !== $pass_from_db or $email !== $email_from_db) {
-            throw new Exception('Email/Password is wrong! Please, sorry me, God! :)');
+            throw new Exception('Incorrect input data!');
         }
         Session::instance()->set('email', $email);
         if (!empty($cookie)) {

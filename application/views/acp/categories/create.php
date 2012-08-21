@@ -1,4 +1,15 @@
-<h2>Izveidot kategoriju:</h2>
+
+<h1>
+	<a href="<?php echo URL::site("acp"); ?>">
+		Home
+	</a> &mdash;
+	<a href="<?php echo URL::site("acp/categories/create") ?>">
+		Create Category
+	</a> |
+	<a href="<?php echo URL::site('acp/categories'); ?>">
+		List Of Categories
+	</a>
+</h1>
 <form action="<?=URL::site('acp/categories/create')?>/<?=Security::token()?>" method="post">
 
 <table>

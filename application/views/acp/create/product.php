@@ -1,3 +1,14 @@
+<h1>
+	<a href="<?php echo URL::site("acp"); ?>">
+		Home
+	</a> &mdash;
+	<a href="<?php echo URL::site("acp/products/create"); ?>">
+		Create Product
+	</a> |
+	<a href="<?php echo URL::site("acp/products"); ?>">
+		List of Products
+	</a>
+</h1>
 <form action="<?=URL::site('acp/products/create')?>" method="post">
 	<input type="hidden" name="csrf_security" value="<?=Security::token()?>" />
 	<table>

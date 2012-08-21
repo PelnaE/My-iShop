@@ -1,3 +1,15 @@
+<h1>
+	<a href="<?php echo URL::site("acp"); ?>">
+		Home
+	</a> &mdash;
+	<a href="<?php echo URL::site("acp/products"); ?>">
+		List of Products
+	</a> |
+	<a href="<?php echo URL::site("acp/products/create"); ?>">
+		Create Product
+	</a>
+</h1>
+
 <?php if(count($products) > 0): ?>
 <table width="100%">
 	<tr>
