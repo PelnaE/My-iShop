@@ -1,14 +1,14 @@
 <h2>Mainīt personisko informāciju:</h2>
-<form action="<?=URL::site('profile')?>" method="post">
+<form action="<?php echo URL::site('profile'); ?>" method="post">
 	<table>
 		<?php foreach($data as $my): ?>
 		<tr>
 			<td ><strong>Vārds</strong></td>
-			<td width="60%"><input type="text" name="name" value="<?=$my->name?>" /></td>
+			<td width="60%"><input type="text" name="name" value="<?php echo $my->name; ?>" /></td>
 		</tr>
 		<tr>
 			<td>Uzvārds</td>
-			<td><input type="text" name="surname" value="<?=$my->surname?>"/ ></td>
+			<td><input type="text" name="surname" value="<?php echo $my->surname; ?>"/ ></td>
 		</tr>
 		<tr>
 			<td><strong>Valūta</strong></td>

@@ -10,7 +10,7 @@
 		List Of Categories
 	</a>
 </h1>
-<form action="<?=URL::site('acp/categories/create')?>/<?=Security::token()?>" method="post">
+<form action="<?php echo URL::site('acp/categories/create/'.Security::token()); ?>" method="post">
 
 <table>
 	<tr>

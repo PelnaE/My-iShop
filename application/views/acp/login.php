@@ -1,5 +1,5 @@
 <h1>Login</h1>
-<form action="<?=URL::site('acp/sign_up/'.Security::token())?>" method="post">
+<form action="<?php echo URL::site('acp/sign_up/'.Security::token()); ?>" method="post">
 	<input type="text" name="email" /><br />
 	<input type="password" name="pass" /><br />
 	<label>

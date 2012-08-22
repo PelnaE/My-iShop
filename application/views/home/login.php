@@ -2,7 +2,7 @@
 <?php if (isset($errors)): ?>
 	<?php echo $errors; ?>
 <?php endif; ?>
-<form action="<?=URL::site('login/submit/'.Security::token())?>" method="post">
+<form action="<?php echo URL::site('login/submit/'.Security::token()); ?>" method="post">
 	<input type="text" name="email" /><br />
 	<input type="password" name="pass" /><br />
 	<label>

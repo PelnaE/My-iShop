@@ -9,14 +9,14 @@
 		List of Products
 	</a>
 </h1>
-<form action="<?=URL::site('acp/products/create')?>" method="post">
-	<input type="hidden" name="csrf_security" value="<?=Security::token()?>" />
+<form action="<?php echo URL::site('acp/products/create'); ?>" method="post">
+	<input type="hidden" name="csrf_security" value="<?php echo Security::token(); ?>" />
 	<table>
 	<tr><td>Nosaukums</td><td><input type="text" name="name" /></td></tr>
 	<tr><td>Kategorija</td>
 		<td><select name="category">
 			<?php foreach ($categories as $category): ?>
-				<option value="<?=$category->slug?>"><?=$category->name?></option>
+				<option value="<?php echo $category->slug; ?>"><?php echo $category->name; ?></option>
 			<?php endforeach; ?>
 			</select></td></tr>
 	<tr><td>Apraksts</td><td><textarea cols="45" rows="10"name="description"></textarea></td></tr>

@@ -13,10 +13,10 @@
 |____________________________________________________________|
 -->
 
-	<title><?=$name?></title>
+	<title><?php echo $name; ?></title>
 	<?php foreach($stylesheets as $stylesheet): ?>
-	<link rel="stylesheet" type="text/css" media="screen" href="<?=URL::site('assets/css/'.$stylesheet.'.css')?>"/>
-    <script src="<?=URL::site('assets/scripts/jquery.js')?>"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="<?php echo URL::site('assets/css/'.$stylesheet.'.css'); ?>"/>
+    <script src="<?php echo URL::site('assets/scripts/jquery.js'); ?>"></script>
 <?php endforeach; ?>
 </head>
 <body>
@@ -27,23 +27,23 @@
 				<ul>
 					<li id="sb_top">
 						<div class="sb_logo">
-							<h1><?=$name?></h1>
+							<h1><?php echo $name; ?></h1>
 						</div>
 					</li>
 					<li>
 						<ul class="navlist">
-							<li><a href="<?=URL::site('/')?>">Home</a></li>
-							<li><a href="<?=URL::site("/products/")?>">Products</a></li>
+							<li><a href="<?php echo URL::site('/'); ?>">Home</a></li>
+							<li><a href="<?php echo URL::site("/products/"); ?>">Products</a></li>
 
                             <?php if (Auth::is_user_signed_in() == FALSE): ?>
-							<li><a href="<?=URL::site("/register/")?>">Registration</a></li>
+							<li><a href="<?php echo URL::site("/register/"); ?>">Registration</a></li>
                         <?php endif; ?>
 						</ul>
 					</li>
                     <?php if (Auth::is_user_signed_in() == FALSE): ?>
                     <li class="widget"><h2>Ienākt</h2>
                         <ul>
-                            <form method="post" action="<?=URL::site('login/submit/'.Security::token())?>">
+                            <form method="post" action="<?php echo URL::site('login/submit/'.Security::token()); ?>">
                                 <input type="text" name="email" /><br />
                                 <input type="password" name="pass" /><br />
                                 <label>
@@ -56,10 +56,10 @@
                     </li>
                     <?php else: ?>
                     <?php foreach($users as $user): ?>
-                    <li class="widget"><h2><?=$user->name?> <?=$user->surname?></h2>
+                    <li class="widget"><h2><?php echo $user->name; ?> <?php echo $user->surname; ?></h2>
                         <ul>
-                            <li><a href="<?=URL::site('/cart/')?>">Cart</a></li>
-                            <li><a href="<?=URL::site('logout')?>">LogOut</a></li>
+                            <li><a href="<?php echo URL::site('/cart/'); ?>">Cart</a></li>
+                            <li><a href="<?php echo URL::site('logout'); ?>">LogOut</a></li>
                         </ul>
                     </li>
                     <?php endforeach; ?>
@@ -68,7 +68,7 @@
                     <li class="widget"><h2>Kategorijas</h2>
                         <ul>
                         <?php foreach ($categories as $category): ?>
-                                <li><a href="<?=URL::site('products/category/'."$category->slug")?>"><?=$category->name?></a></li>
+                                <li><a href="<?php echo URL::site('products/category/'."$category->slug")?>"><?php echo $category->name?></a></li>
                         <?php endforeach; ?>
                         </ul>
                     </li>
@@ -89,24 +89,24 @@
             <div id="content">
             	<div id="intro">
                     <?php foreach($products as $product): ?>
-                    <h1><a href="<?=URL::site('products/item/'.$product->id)?>"><?=$product->name?></a></h1>
+                    <h1><a href="<?php echo URL::site('products/item/'.$product->id); ?>"><?php echo $product->name; ?></a></h1>
                     <?php if (empty($product->image_url)): ?>
-                        <img height="65px" src="<?=URL::site('assets/pic/no_image_available.jpg')?>" align="left" />
+                        <img height="65px" src="<?php echo URL::site('assets/pic/no_image_available.jpg'); ?>" align="left" />
                     <?php else: ?>
-                        <img height="65px" src="<?=$product->image_url?>" align="left" />
+                        <img height="65px" src="<?php echo $product->image_url; ?>" align="left" />
                     <?php endif ?>
-                    Tikai <?=Currency::pretty_format($product->price, $valute, $product->discount)?>!<br />
-                    Atlaide - <?=$product->discount?>%
+                    Tikai <?php echo Currency::pretty_format($product->price, $valute, $product->discount); ?>!<br />
+                    Atlaide - <?php echo $product->discount; ?>%
                 <?php endforeach; ?>
             	</div>
-            	<?=$content?>
+            	<?php echo $content; ?>
 
 
 
             </div> <!-- /content -->
             <?php if (isset($scripts)): ?>
             <?php foreach($scripts as $script): ?>
-            <script type="text/javascript" src="<?=URL::site('assets/scripts/'. $script.'.js')?>"></script>
+            <script type="text/javascript" src="<?php echo URL::site('assets/scripts/'. $script.'.js'); ?>"></script>
         <?php endforeach; ?>
     <?php endif; ?>
 

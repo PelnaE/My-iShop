@@ -22,14 +22,14 @@
 <tr>
 <td><?=$product->id?></td>
 <td>
-	<a href="<?=URL::site('acp/products/item/'.$product->id)?>">
+	<a href="<?php echo URL::site('acp/products/item/'.$product->id); ?>">
 		<?=$product->name?>
 	</a>
 </td>
 <td><?=$product->category?></td>
 <td>
-	<a href="<?=URL::site('acp/products/delete/'
-							.$product->id.'/'.Security::token())?>"
+	<a href="<?php echo URL::site('acp/products/delete/'
+							.$product->id.'/'.Security::token()); ?>"
 		class="delete">[X]</a>
 </td>
 </tr>
@@ -37,5 +37,5 @@
 </table>
 <?php else: ?>
 <h3>Nothing to found</h3>
-<a href="<?=URL::site('acp/products/create')?>">Create A Product</a>
+<a href="<?php echo URL::site('acp/products/create'); ?>">Create A Product</a>
 <?php endif; ?>

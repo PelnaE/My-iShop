@@ -3,8 +3,8 @@
 <div class="post">
 	<h1>Products Admin</h1>
 	<ul>
-		<li><a href="<?=URL::site('acp/products/create')?>">Add New Product</a></li>
-		<li><a href="<?=URL::site('acp/products')?>">Products</a></li>
+		<li><a href="<?php echo URL::site('acp/products/create'); ?>">Add New Product</a></li>
+		<li><a href="<?php echo URL::site('acp/products'); ?>">Products</a></li>
 	</ul>
 
 </div>

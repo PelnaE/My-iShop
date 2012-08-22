@@ -16,8 +16,8 @@
 	</tr>
 <?php foreach($products as $product): ?>
 	<tr>
-		<td><?=$product->name?></td>
-		<td><?=$product->count?></td>
+		<td><?php echo $product->name; ?></td>
+		<td><?php echo $product->count; ?></td>
 	<?php if($product->count > 1): ?>
 		<td>
 			<?php echo Currency::pretty_format($product->price * $product->count, $valute); ?>
@@ -31,7 +31,7 @@
 
 	<?php endif; ?>
 		<td>
-			<a href="<?=URL::site('cart/delete/'.$product->id.'/'.Security::token())?>"
+			<a href="<?php echo URL::site('cart/delete/'.$product->id.'/'.Security::token()); ?>"
 				class="delete">
 				[X]
 			</a>

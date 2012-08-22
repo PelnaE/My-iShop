@@ -12,7 +12,7 @@
 <?php if(!empty($categories)): ?>
 	<?php foreach($categories as $category): ?>
 		<div class="post">
-			<h1><?=$category->name?></h1>
+			<h1><?php echo $category->name; ?></h1>
 		</div>
 	<?php endforeach; ?>
 <?php else: ?>
