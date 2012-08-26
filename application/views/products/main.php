@@ -2,8 +2,13 @@
 <h1>Visas veikalā pieejamās preces</h1>
 	<?php foreach($products as $product): ?>
 	<div class="calendar">
+		<?php if ($product->is_discount == 1): ?>
+		<p class="month"><?php echo Currency::pretty_format($product->price, $valute, $product->discount); ?></p>
+		<p class="date"><del><?php echo Currency::pretty_format($product->price, $valute); ?></del></p>
+		<?php else: ?>
 		<p class="month">Cena</p>
 		<p class="date"><?php echo Currency::pretty_format($product->price, $valute); ?></p>
+		<?php endif; ?>
 	</div>
 	<div class="post">
 		<h1><a href="<?php echo URL::site('products/item/'.$product->id); ?>"><?php echo $product->name; ?></a></h1>

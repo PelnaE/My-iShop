@@ -36,6 +36,8 @@
 <?php endforeach; ?>
 </table>
 <?php else: ?>
-<h3>Nothing to found</h3>
-<a href="<?php echo URL::site('acp/products/create'); ?>">Create A Product</a>
+	<div class="post">
+		<h1>Nothing to found</h3>
+		<a href="<?php echo URL::site('acp/products/create'); ?>">Create A Product</a>
+	</div>
 <?php endif; ?>

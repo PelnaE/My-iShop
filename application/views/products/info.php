@@ -1,9 +1,14 @@
 <?php if(!empty($products)): ?>
 <?php foreach($products as $product): ?>
-<div class="calendar">
-	<p class="month">Cena</p>
-	<p class="date"><?php echo Currency::pretty_format($product->price, $valute); ?></p>
-</div>
+	<div class="calendar">
+		<?php if ($product->is_discount == 1): ?>
+		<p class="month"><?php echo Currency::pretty_format($product->price, $valute, $product->discount); ?></p>
+		<p class="date"><del><?php echo Currency::pretty_format($product->price, $valute); ?></del></p>
+		<?php else: ?>
+		<p class="month">Cena</p>
+		<p class="date"><?php echo Currency::pretty_format($product->price, $valute); ?></p>
+		<?php endif; ?>
+	</div>
 <div class="post">
 	<h1><?php echo $product->name; ?></h1>
 		<?php if(empty($product->image_url)): ?>
