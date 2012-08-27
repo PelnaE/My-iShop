@@ -1,4 +1,9 @@
-<?php if(!empty($products)): ?>
+<?php if(count($products) == 0): ?>
+	<div class="post">
+		<h1>Product with that ID not exists.</h1>
+		We do not have product with that ID!
+	</div>
+<?php endif; ?>
 <?php foreach($products as $product): ?>
 	<div class="calendar">
 		<?php if ($product->is_discount == 1): ?>
@@ -25,4 +30,3 @@ Cik daudz <?php echo $product->name; ?> Jums vajag? <input type="text" id="count
 <div class="add-to-cart" data-item-id="<?php echo $product->id; ?>" data-token="<?php echo Security::token(); ?>"></div>
 </div>
 <?php endforeach; ?>
-<?php endif; ?>
