@@ -29,6 +29,7 @@
 		</select>
 	</td></tr>
 	<tr><td>Attēla adrese</td><td><input type="text" name="img_url" /></td></tr>
+	<tr><td>Skaits</td><td><input type="text" name="count" /></td></tr>
 	<tr><td></td><td><input type="submit" value="Apstiprinu!" /></td></tr>
 	</table>
 </form>

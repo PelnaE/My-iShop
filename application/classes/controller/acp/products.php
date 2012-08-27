@@ -2,7 +2,7 @@
 
 class Controller_ACP_Products extends Controller_Template
 {
-    
+
     public function action_list()
     {
         $view                    = View::factory('acp/products');
@@ -23,6 +23,7 @@ class Controller_ACP_Products extends Controller_Template
             $description = $this->request->post('description');
             $price       = $this->request->post('price');
             $img_url     = $this->request->post('img_url');
+            $count       = $this->request->post('count');
 
             $price = Currency::to_database($price, $valute);
 
@@ -36,6 +37,7 @@ class Controller_ACP_Products extends Controller_Template
                 'category'    => $category,
                 'description' => $description,
                 'price'       => $price,
+                'count'       => $count,
                 );
             $create_new_product = $products->create_new_product($data);
             if (!$create_new_product) {
@@ -86,10 +88,11 @@ class Controller_ACP_Products extends Controller_Template
             $description = $this->request->post('description');
             $price       = $this->request->post('price')*100;
             $img_url     = $this->request->post('img_url');
+            $count       = $this->request->post('count');
             $token       = $this->request->param('id');
 
             if (Security::check($token)) {
-                throw new Exception("Token is not valid!");             
+                throw new Exception("Token is not valid!");
             }
 
             if (empty($is_discount) && empty($discount)) {
@@ -101,7 +104,7 @@ class Controller_ACP_Products extends Controller_Template
 
 
             if (empty($name) && empty($description) && empty($price)) {
-                throw new Exception("Please fill all fields!");             
+                throw new Exception("Please fill all fields!");
             }
 
             $products = new Model_Product();
@@ -112,6 +115,7 @@ class Controller_ACP_Products extends Controller_Template
                 'description' => $description,
                 'price'       => $price,
                 'image_url'   => $img_url,
+                'count'       => $count,
                 );
             $update_product_info = $products->update_product_info($data, $id);
             if (!$update_product_info) {

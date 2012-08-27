@@ -39,6 +39,10 @@
 			<td><textarea name="description" id="" cols="50" rows="10"><?php echo $product->description; ?></textarea></td>
 		</tr>
 		<tr>
+			<th>Skaits:</th>
+			<td><input type="text" name="count" value="<?php echo $product->count; ?>" /></td>
+		</tr>
+		<tr>
 			<th></th>
 			<td><input style="float:right" type="submit" value="Apstiprinu!" /></td>
 		</tr>
