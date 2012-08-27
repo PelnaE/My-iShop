@@ -5,7 +5,7 @@ return array(
 			'type' => 'mysql',
 			'connection' => array(
 				'hostname' => 'localhost',
-				'database' => 'piemums',
+				'database' => 'iShop',
 				'username' => 'reGative',
 				'password' => 'mjaumjau',
 				'persistent' => false,
