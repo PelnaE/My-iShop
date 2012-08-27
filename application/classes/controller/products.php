@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') or die ('Hacking attemp');
 
-class Controller_Products extends Controller_Template 
+class Controller_Products extends Controller_Template
 {
     public function action_index()
     {
@@ -26,18 +26,18 @@ class Controller_Products extends Controller_Template
         $categories              = new Model_Category();
         $products                = new Model_Product();
         $user_session            = Session::instance()->get('email');
-        $view->valute            = $clients->get_user_valute($user_session);      
+        $view->valute            = $clients->get_user_valute($user_session);
         $view->products          = $products->get_products_by_category($category_slug);
         $view->category          = $categories->get_category_by_slug($category_slug);
         $this->template->content = $view->render();
     }
 
-    public function action_item() 
+    public function action_item()
     {
         $product_id = $this->request->param('id');
 
         if (empty($product_id)) {
-            echo Error::number_404();          
+            throw new Exception("ID must not be empty!");
         }
 
         $view                    = View::factory('products/info');
