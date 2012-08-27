@@ -1,4 +1,4 @@
-pplication/logs/*
+application/logs/*
 application/cache/*
 modules/*
 system/*
