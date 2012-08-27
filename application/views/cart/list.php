@@ -12,6 +12,7 @@
 		<th>Nosaukums</th>
 		<th>Skaits</th>
 		<th>Cena</th>
+		<th>Atlaide</th>
 		<th>Opcijas</th>
 	</tr>
 <?php foreach($products as $product): ?>
@@ -29,6 +30,11 @@
 			<?php echo Currency::pretty_format($product->price, $valute, $product->discount); ?>
 		</td>
 
+	<?php endif; ?>
+	<?php if ($product->is_discount == 1): ?>
+		<td><?php echo $product->discount; ?>%</td>
+	<?php else: ?>
+		<td align="center">-</td>
 	<?php endif; ?>
 		<td>
 			<a href="<?php echo URL::site('cart/delete/'.$product->id.'/'.Security::token()); ?>"
