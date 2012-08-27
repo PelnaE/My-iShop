@@ -20,13 +20,13 @@
 		<td><?php echo $product->count; ?></td>
 	<?php if($product->count > 1): ?>
 		<td>
-			<?php echo Currency::pretty_format($product->price * $product->count, $valute); ?>
+			<?php echo Currency::pretty_format($product->price * $product->count, $valute, $product->discount); ?>
 		</td>
 
 		<?php else: ?>
 
 		<td>
-			<?php echo Currency::pretty_format($product->price, $valute); ?>
+			<?php echo Currency::pretty_format($product->price, $valute, $product->discount); ?>
 		</td>
 
 	<?php endif; ?>
