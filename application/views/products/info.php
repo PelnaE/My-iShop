@@ -26,7 +26,7 @@
 	Ar atlaidi - <?php echo Currency::pretty_format($product->price, $valute, $product->discount); ?>
 <?php endif; ?>
 <h1>Iegādāties</h1>
-Cik daudz <?php echo $product->name; ?> Jums vajag? <input type="text" id="count" value="1" /><br />
+Cik daudz <?php echo $product->name; ?> Jums vajag? <input type="number" name="count" min="1" max="<?php echo $product->count; ?>" /><br />
 <div class="add-to-cart" data-item-id="<?php echo $product->id; ?>" data-token="<?php echo Security::token(); ?>"></div>
 </div>
 <?php endforeach; ?>
