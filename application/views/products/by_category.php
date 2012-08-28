@@ -16,7 +16,7 @@
 		<?php endif; ?>
 	</div>
 <div class="post">
-	<h1><?php echo $product->name; ?></h1>
+	<h1><a href="<?php echo URL::site('products/item/'.$product->id); ?>"><?php echo $product->name; ?></a></h1>
 	<?php if(empty($product->image_url)): ?>
 		<img align="left" src="<?php echo URL::site('assets/pic/no_image_available.jpg'); ?>" alt="No Picture Available" /><br />
 	<?php else: ?>
